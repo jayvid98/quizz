@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PNVN1631 — Test Review Quiz 05/14/2026</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-73B0850NQE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-73B0850NQE');
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0b2545;--blue:#134a8e;--sky:#2176d2;
+  --teal:#0a8f80;--teal-lt:#e0f5f2;
+  --green:#0e9e5e;--green-lt:#e4f9ee;
+  --red:#d0312d;--red-lt:#fde8e8;
+  --gold:#c87c00;--gold-lt:#fff3d0;
+  --purple:#6b3fa0;--purple-lt:#f0ebfc;
+  --white:#fff;--off:#f4f7fb;
+  --border:#d0dcea;--text:#0f1f36;--muted:#607090;--r:13px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;background:#e8eef8;color:var(--text);min-height:100vh;}
+
+/* LOCK */
+#lock-screen{position:fixed;inset:0;background:linear-gradient(135deg,#0b2545 0%,#1a3560 55%,#0a5060 100%);z-index:9999;display:flex;align-items:center;justify-content:center;}
+#lock-screen.hidden{display:none;}
+.lock-box{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.15);border-radius:24px;padding:40px 36px 36px;display:flex;flex-direction:column;align-items:center;gap:20px;width:320px;max-width:90vw;box-shadow:0 24px 60px rgba(0,0,0,.4);}
+.lock-icon{font-size:44px;animation:pulseIn .5s ease;}
+.lock-title{font-family:'Nunito',sans-serif;font-size:18px;font-weight:900;color:#fff;text-align:center;}
+.lock-sub{font-family:'Nunito',sans-serif;font-size:11px;color:#7eb8f0;letter-spacing:1.5px;text-transform:uppercase;margin-top:-10px;}
+.lock-dots{display:flex;gap:14px;}
+.lock-dot{width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,255,255,.35);background:transparent;transition:all .2s;}
+.lock-dot.filled{background:#5dd6c8;border-color:#5dd6c8;box-shadow:0 0 8px rgba(93,214,200,.6);}
+.lock-dot.error{background:#f78b89;border-color:#f78b89;animation:shake .4s ease;}
+.numpad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;}
+.num-btn{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.15);border-radius:12px;color:#fff;font-family:'Nunito',sans-serif;font-size:20px;font-weight:800;padding:16px 0;cursor:pointer;transition:all .15s;user-select:none;}
+.num-btn:hover{background:rgba(255,255,255,.18);transform:scale(1.05);}
+.num-btn:active{transform:scale(.95);}
+.num-btn.zero-btn{grid-column:2;}
+.lock-err{font-family:'Nunito',sans-serif;font-size:12px;color:#f78b89;font-weight:700;min-height:16px;opacity:0;transition:opacity .3s;}
+.lock-err.show{opacity:1;}
+@keyframes shake{0%,100%{transform:translateX(0);}20%,60%{transform:translateX(-6px);}40%,80%{transform:translateX(6px);}}
+@keyframes pulseIn{from{transform:scale(.4);opacity:0;}to{transform:scale(1);opacity:1;}}
+@keyframes slideDown{from{transform:translateY(-12px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+@keyframes fadeUp{from{transform:translateY(12px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+@keyframes popIn{0%{transform:scale(.97);}60%{transform:scale(1.02);}100%{transform:scale(1);}}
+@keyframes ecgDraw{to{stroke-dashoffset:0;}}
+
+/* HEADER */
+header{background:linear-gradient(135deg,#0b2545 0%,#1a3560 50%,#0a5060 100%);position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 15% 50%,rgba(33,118,210,.2) 0%,transparent 50%),radial-gradient(circle at 85% 20%,rgba(10,143,128,.18) 0%,transparent 50%);}
+.ecg-wrap{position:absolute;bottom:0;left:0;right:0;height:46px;overflow:hidden;opacity:.13;}
+.ecg-line{stroke:#5dd6c8;stroke-width:2;fill:none;stroke-dasharray:1400;stroke-dashoffset:1400;animation:ecgDraw 3s ease forwards .3s;}
+.hdr{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:38px 22px 30px;display:flex;flex-direction:column;align-items:center;text-align:center;}
+.hdr-icon{width:58px;height:58px;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.25);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:13px;animation:pulseIn .5s ease;}
+.hdr-badge{background:var(--red);color:#fff;font-size:10px;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:4px 14px;border-radius:20px;margin-bottom:10px;animation:slideDown .4s ease;}
+.hdr-course{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#7eb8f0;margin-bottom:6px;}
+.hdr h1{font-size:clamp(20px,5vw,38px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:5px;animation:slideDown .45s ease;}
+.hdr h1 em{font-style:normal;color:#5dd6c8;}
+.hdr-sub{color:#a0c4e8;font-size:13px;margin-bottom:18px;}
+.topic-pills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:18px;}
+.tp{padding:5px 14px;border-radius:20px;border:1.5px solid rgba(255,255,255,.22);font-size:11px;font-weight:800;color:#fff;}
+.score-dash{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+.dp{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:50px;padding:8px 18px;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px;}
+.dp .dpv{font-size:18px;font-weight:900;min-width:24px;text-align:center;}
+.dp-c .dpv{color:#5dd6c8;}.dp-w .dpv{color:#f78b89;}.dp-t .dpv{color:#f0c96a;}
+.hprog{width:100%;max-width:460px;margin-top:14px;}
+.hpl{display:flex;justify-content:space-between;color:#7eb8f0;font-size:11px;font-weight:600;margin-bottom:4px;}
+.hpbg{height:7px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden;}
+.hpf{height:100%;background:linear-gradient(90deg,#d0312d,#0a8f80);border-radius:10px;transition:width .5s ease;width:0%;}
+
+/* NAV */
+.snav{background:#fff;border-bottom:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(11,37,69,.08);}
+.nlbl{font-size:10px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;}
+.fc{padding:5px 12px;border-radius:20px;border:1.5px solid var(--border);background:#fff;font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .17s;white-space:nowrap;}
+.fc:hover{border-color:var(--sky);color:var(--sky);}.fc.on{background:var(--navy);color:#fff;border-color:var(--navy);}
+.nright{margin-left:auto;display:flex;gap:6px;}
+.sab{background:linear-gradient(135deg,var(--red),var(--blue));color:#fff;border:none;padding:7px 16px;border-radius:7px;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;cursor:pointer;transition:transform .15s;box-shadow:0 2px 10px rgba(208,49,45,.28);}
+.sab:hover{transform:translateY(-1px);}
+.rb-btn{background:var(--off);border:1.5px solid var(--border);color:var(--muted);padding:7px 12px;border-radius:7px;font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .17s;}
+.rb-btn:hover{border-color:var(--red);color:var(--red);}
+
+/* MAIN */
+main{max-width:1000px;margin:0 auto;padding:22px 16px 80px;}
+.obj-banner{border-radius:12px;padding:14px 18px;margin:28px 0 12px;display:flex;align-items:flex-start;gap:14px;animation:fadeUp .4s ease;}
+.obj-banner:first-child{margin-top:0;}
+.ob-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+.ob-text strong{font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:2px;}
+.ob-text p{font-size:12px;line-height:1.4;opacity:.85;}
+.ob-count{margin-left:auto;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700;white-space:nowrap;flex-shrink:0;background:rgba(255,255,255,.15);}
+
+/* CARDS */
+.qc{background:#fff;border-radius:var(--r);border:1.5px solid var(--border);margin-bottom:12px;box-shadow:0 2px 9px rgba(11,37,69,.055);overflow:hidden;transition:box-shadow .2s;animation:fadeUp .3s ease both;}
+.qc:hover{box-shadow:0 5px 20px rgba(11,37,69,.1);}
+.qc.cc{border-color:#a8ead0;}.qc.wc{border-color:#f5b0ae;}
+.qh{display:flex;align-items:center;gap:8px;padding:8px 15px;border-bottom:1px solid var(--border);background:var(--off);}
+.qn{width:26px;height:26px;border-radius:7px;background:var(--navy);color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.qtag{font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:2px 8px;border-radius:20px;}
+.qmb{font-size:9px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-left:3px;}
+.qsi{margin-left:auto;font-size:18px;opacity:0;transform:scale(.5);transition:opacity .3s,transform .3s;}
+.qc.cc .qsi,.qc.wc .qsi{opacity:1;transform:scale(1);}
+.qbd{padding:15px 17px 12px;}
+.qt{font-family:'Source Serif 4',serif;font-size:15px;font-weight:600;color:var(--navy);line-height:1.55;margin-bottom:13px;}
+.mn{font-size:10px;color:var(--gold);font-weight:800;background:var(--gold-lt);padding:3px 8px;border-radius:5px;display:inline-block;margin-bottom:9px;}
+.opts{display:flex;flex-direction:column;gap:6px;}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:8px;border:2px solid var(--border);background:var(--off);cursor:pointer;transition:all .17s;font-size:13.5px;font-weight:600;color:var(--text);text-align:left;width:100%;font-family:'Nunito',sans-serif;}
+.opt:hover:not(:disabled){border-color:var(--sky);background:#e8f0fb;transform:translateX(2px);}
+.ol{min-width:24px;height:24px;background:var(--border);color:var(--blue);border-radius:6px;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all .18s;}
+.opt.sel{border-color:var(--sky);background:#e8f0fb;}.opt.sel .ol{background:var(--sky);color:#fff;}
+.opt.oc{border-color:var(--green);background:var(--green-lt);animation:popIn .3s ease;}.opt.oc .ol{background:var(--green);color:#fff;}
+.opt.ow{border-color:var(--red);background:var(--red-lt);}.opt.ow .ol{background:var(--red);color:#fff;}
+.opt.or{border-color:var(--green);background:var(--green-lt);opacity:.75;}.opt.or .ol{background:var(--green);color:#fff;}
+.opt:disabled{cursor:default;}
+.ochk{width:16px;height:16px;border-radius:4px;border:2px solid var(--border);flex-shrink:0;margin-top:3px;margin-left:auto;display:flex;align-items:center;justify-content:center;font-size:9px;transition:all .18s;}
+.opt.sel .ochk{background:var(--sky);border-color:var(--sky);color:#fff;}
+.opt.oc .ochk{background:var(--green);border-color:var(--green);color:#fff;}
+.opt.ow .ochk{background:var(--red);border-color:var(--red);color:#fff;}
+.qft{padding:0 17px 13px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.subbtn{background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;border:none;padding:8px 22px;border-radius:7px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;transition:all .17s;box-shadow:0 2px 10px rgba(19,74,142,.22);display:flex;align-items:center;gap:5px;}
+.subbtn:hover:not(:disabled){transform:translateY(-2px);}
+.subbtn:disabled{background:#bcc;cursor:default;box-shadow:none;transform:none;}
+.skn{font-size:11px;color:var(--muted);font-style:italic;}
+.rat{margin:0 17px 13px;border-radius:9px;overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.4,0,.2,1),opacity .35s ease;opacity:0;}
+.rat.show{max-height:380px;opacity:1;}
+.rati{padding:12px 14px;display:flex;align-items:flex-start;gap:9px;font-size:13px;line-height:1.6;}
+.ri{font-size:18px;flex-shrink:0;margin-top:1px;}
+.rc strong{display:block;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px;}
+.rat.rat-c{background:var(--green-lt);border:1.5px solid #a8ead0;}
+.rat.rat-w{background:var(--red-lt);border:1.5px solid #f5b0ae;}
+.rat-c .rc strong{color:var(--green);}.rat-c .rc{color:#0a5c3a;}
+.rat-w .rc strong{color:var(--red);}.rat-w .rc{color:#7a1010;}
+#results-div{background:linear-gradient(135deg,var(--navy),#1a3a6e);border-radius:16px;padding:28px 24px;margin-bottom:26px;text-align:center;color:#fff;display:none;animation:fadeUp .5s ease;}
+#results-div.show{display:block;}
+.rbe{font-size:52px;margin-bottom:8px;}.rbt{font-size:24px;font-weight:900;margin-bottom:4px;}
+.rbs{color:#8ab2d8;font-size:13px;margin-bottom:14px;}.rbp{font-size:58px;font-weight:900;color:#5dd6c8;line-height:1;}
+.rbst{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:14px;}
+.rbst div{text-align:center;}.rbst strong{display:block;font-size:20px;font-weight:900;}
+.rbst span{font-size:10px;color:#8ab2d8;text-transform:uppercase;letter-spacing:1px;}
+.rbc strong{color:#5dd6c8;}.rbw strong{color:#f78b89;}
+@media(max-width:600px){.qt{font-size:14px;}.snav{gap:4px;}.nright{width:100%;justify-content:flex-end;}.fc{font-size:10px;padding:4px 8px;}}
+</style>
+</head>
+<body>
+
+<div id="lock-screen">
+  <div class="lock-box">
+    <div class="lock-icon">📋</div>
+    <div class="lock-title">Test Review Quiz<br>05 / 14 / 2026</div>
+    <div class="lock-sub">Enter passcode</div>
+    <div class="lock-dots">
+      <div class="lock-dot" id="d0"></div><div class="lock-dot" id="d1"></div>
+      <div class="lock-dot" id="d2"></div><div class="lock-dot" id="d3"></div>
+    </div>
+    <div class="lock-err" id="lock-err">Incorrect passcode</div>
+    <div class="numpad">
+      <button class="num-btn" onclick="pressNum('1')">1</button>
+      <button class="num-btn" onclick="pressNum('2')">2</button>
+      <button class="num-btn" onclick="pressNum('3')">3</button>
+      <button class="num-btn" onclick="pressNum('4')">4</button>
+      <button class="num-btn" onclick="pressNum('5')">5</button>
+      <button class="num-btn" onclick="pressNum('6')">6</button>
+      <button class="num-btn" onclick="pressNum('7')">7</button>
+      <button class="num-btn" onclick="pressNum('8')">8</button>
+      <button class="num-btn" onclick="pressNum('9')">9</button>
+      <button class="num-btn zero-btn" onclick="pressNum('0')">0</button>
+      <button class="num-btn" onclick="pressDelete()">⌫</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="hdr">
+    <div class="hdr-icon">📋</div>
+    <div class="hdr-badge">🔥 Test Review — 05/14/2026</div>
+    <div class="hdr-course">PNVN1631 · Medical-Surgical Nursing I · Concorde Career College</div>
+    <h1>Quiz 1 &amp; Cardiac <em>Test Review</em></h1>
+    <p class="hdr-sub">Built directly from your test review notes · Every question is on the exam</p>
+    <div class="topic-pills">
+      <span class="tp" style="background:rgba(10,143,128,.35);">🏥 Hospice &amp; Palliative</span>
+      <span class="tp" style="background:rgba(160,40,74,.35);">💀 Active Dying Signs</span>
+      <span class="tp" style="background:rgba(107,63,160,.35);">🩺 EOL Interventions</span>
+      <span class="tp" style="background:rgba(208,49,45,.35);">❤️ Cardiac</span>
+    </div>
+    <div class="score-dash">
+      <div class="dp dp-t"><span class="dpv" id="dt">—</span>Questions</div>
+      <div class="dp dp-c"><span>✔</span><span class="dpv" id="dc">0</span>Correct</div>
+      <div class="dp dp-w"><span>✘</span><span class="dpv" id="dw">0</span>Wrong</div>
+      <div class="dp"><span>📝</span><span class="dpv" id="da">0</span>Answered</div>
+    </div>
+    <div class="hprog"><div class="hpl"><span>Progress</span><span id="hppl">0%</span></div><div class="hpbg"><div class="hpf" id="hpf"></div></div></div>
+  </div>
+  <div class="ecg-wrap"><svg width="100%" height="46" viewBox="0 0 1400 46" preserveAspectRatio="none"><path class="ecg-line" d="M0,23 L100,23 L116,23 L130,3 L140,43 L150,6 L160,23 L178,23 L298,23 L314,23 L328,3 L338,43 L348,6 L358,23 L376,23 L496,23 L512,23 L526,3 L536,43 L546,6 L556,23 L574,23 L694,23 L710,23 L724,3 L734,43 L744,6 L754,23 L772,23 L892,23 L908,23 L922,3 L932,43 L942,6 L952,23 L970,23 L1090,23 L1106,23 L1120,3 L1130,43 L1140,6 L1150,23 L1168,23 L1400,23"/></svg></div>
+</header>
+
+<div class="snav">
+  <span class="nlbl">Filter:</span>
+  <button class="fc on" data-f="all">All</button>
+  <button class="fc" data-f="hospice">🏥 Hospice</button>
+  <button class="fc" data-f="dying">💀 Active Dying</button>
+  <button class="fc" data-f="eol">🩺 EOL Care</button>
+  <button class="fc" data-f="cardiac">❤️ Cardiac</button>
+  <button class="fc" data-f="unanswered">Unanswered</button>
+  <button class="fc" data-f="wrong">Wrong Only</button>
+  <div class="nright">
+    <button class="sab" onclick="submitAll()">✔ Submit All</button>
+    <button class="rb-btn" onclick="resetAll()">↺ Reset</button>
+  </div>
+</div>
+
+<main><div id="results-div"></div><div id="qwrap"></div></main>
+
+<script>
+const L=['A','B','C','D','E','F'];
+const state={};
+let cf='all';
+
+const QS=[
+
+/* ══ HOSPICE & PALLIATIVE CARE ══════════════════════ */
+{id:1,mod:'hospice',obj:'Hospice & Palliative Care',cat:'Hospice & Palliative Care',icon:'🏥',cc:'#0a8f80',cb:'#e0f5f2',
+q:'What is the GOAL of hospice care?',
+opts:['Cure the patient\'s underlying disease','Comfort, pain-free living, and nausea management — maximize quality of life','Provide aggressive treatment to prolong life','Transfer patient to a hospital setting'],
+ans:1,explain:'Hospice goal: COMFORT, pain-free, nausea management. It is a philosophy of care that keeps the patient as comfortable as possible in the setting they choose. NOT curative. (Test Review #1)'},
+
+{id:2,mod:'hospice',obj:'Hospice & Palliative Care',cat:'Hospice & Palliative Care',icon:'🏥',cc:'#0a8f80',cb:'#e0f5f2',
+q:'When teaching a family about PALLIATIVE CARE, what should the nurse explain?',
+opts:['Palliative care means a cure is possible with aggressive treatment','Palliative care prepares for hospice — there is no cure; nothing to prolong life; check-ins about once a year while stable','Palliative care is only for cancer patients','Palliative care requires hospital admission'],
+ans:1,explain:'Palliative care: preps for hospice — NO cure, nothing to prolong life. Involves regular check-ins (about once a year) as long as the patient is stable with no dramatic weight loss. (Test Review #2)'},
+
+{id:3,mod:'hospice',obj:'Hospice & Palliative Care',cat:'Hospice & Palliative Care',icon:'🏥',cc:'#0a8f80',cb:'#e0f5f2',
+q:'What is the life expectancy requirement to qualify for hospice care?',
+opts:['3 months or less','6 months or less','12 months or less','No specific time requirement'],
+ans:1,explain:'Hospice = 6 MONTHS OR LESS life expectancy. A physician must certify the terminal diagnosis with a prognosis of 6 months or less if the illness runs its normal course. (Test Review #3)'},
+
+{id:4,mod:'hospice',obj:'Hospice & Palliative Care',cat:'Hospice & Palliative Care',icon:'🏥',cc:'#0a8f80',cb:'#e0f5f2',
+q:'Regarding the PLAN OF CARE for a hospice patient, when should it be confirmed with the patient and family?',
+opts:['Only at the first admission visit','Only when the patient\'s condition changes','Right away — always discuss with the patient and family on site as soon as possible','Only when requested by the family'],
+ans:2,explain:'Plan of care should ALWAYS be discussed with the patient and family RIGHT AWAY — on site, as soon as possible. This ensures patient autonomy and family involvement in all care decisions. (Test Review #4 / Laptop screen notes)'},
+
+{id:5,mod:'hospice',obj:'Hospice & Palliative Care',cat:'Hospice & Palliative Care',icon:'🏥',cc:'#0a8f80',cb:'#e0f5f2',
+q:'What is the MAIN thing families do NOT want to see when their loved one is actively dying?',
+opts:['The patient sleeping too much','Pain and suffering','Changes in skin color','Decreased appetite'],
+ans:1,explain:'The #1 concern of families: they do NOT want to see their loved one in PAIN AND SUFFERING. This is why hospice prioritizes pain control as the most crucial intervention. (Test Review #5)'},
+
+{id:6,mod:'hospice',obj:'Hospice & Palliative Care',cat:'Hospice & Palliative Care',icon:'🏥',cc:'#0a8f80',cb:'#e0f5f2',
+q:'When a family is concerned about terminally ill relatives, what are they MOST concerned about?',
+opts:['Financial costs of care','That the patient is not suffering and not in pain','How long the patient will be in hospice','Finding a better physician'],
+ans:1,explain:'Families are MOST concerned that their loved one is NOT suffering and NOT in pain. This aligns with the hospice goal of comfort and pain management. (Laptop screen notes)'},
+
+{id:7,mod:'hospice',obj:'Hospice & Palliative Care',cat:'Hospice & Palliative Care',icon:'🏥',cc:'#0a8f80',cb:'#e0f5f2',
+q:'When does the nurse confirm the plan of care with the patient who is in the ANGER stage of grief?',
+opts:['Wait until the patient reaches acceptance before discussing the plan','Never — the physician handles plan of care during the anger stage','Still confirm the plan right away — the nurse works with the patient at whatever stage they are in','Wait until family members are present only'],
+ans:2,explain:'The nurse confirms the plan of care RIGHT AWAY regardless of grief stage. During the ANGER stage, the patient still needs to be involved. The nurse must work with the patient at whatever stage they are at in their grief. (Laptop screen notes)'},
+
+{id:8,mod:'hospice',obj:'Hospice & Palliative Care',cat:'Hospice & Palliative Care',icon:'🏥',cc:'#0a8f80',cb:'#e0f5f2',
+q:'A patient has INADEQUATE NUTRITION in hospice. Who should the nurse consult?',
+opts:['Pharmacist to adjust medications','Registered Dietitian for nutritional assessment and guidance','Physical therapist to increase appetite through exercise','Social worker for financial assistance with food'],
+ans:1,explain:'Inadequate nutrition → consult a REGISTERED DIETITIAN. They assess swallowing ability, recommend appropriate food textures, caloric supplements, and guide the family on comfort-focused nutrition. (Laptop screen notes)'},
+
+/* ══ ACTIVE DYING SIGNS ══════════════════════════════ */
+{id:9,mod:'dying',obj:'Signs of Active Dying',cat:'Signs of Active Dying',icon:'💀',cc:'#a0284a',cb:'#fdedf3',
+q:'What do nail beds look like when a patient is actively dying?',
+opts:['Pink and well-perfused','Bright red and warm','Purple and pale','White and blistered'],
+ans:2,explain:'As death approaches, nail beds appear PURPLE AND PALE (also described as purple/mottled). This is due to decreased peripheral circulation — blood is pooling away from the extremities. (Test Review #10)'},
+
+{id:10,mod:'dying',obj:'Signs of Active Dying',cat:'Signs of Active Dying',icon:'💀',cc:'#a0284a',cb:'#fdedf3',
+q:'A patient is reaching out, grabbing at the air, and fidgeting. The nurse recognizes this as:',
+opts:['A medication reaction requiring immediate intervention','Anxiety that needs to be addressed with therapy','A sign of active dying — normal near-death behavior','Seizure activity requiring emergency response'],
+ans:2,explain:'Reaching out, grabbing at the air, and fidgeting = a SIGN OF ACTIVE DYING. This is a normal near-death phenomenon. Do NOT restrain — provide comfort, reassure the family, ensure the patient is not in pain. (Test Review #11)'},
+
+{id:11,mod:'dying',obj:'Signs of Active Dying',cat:'Signs of Active Dying',icon:'💀',cc:'#a0284a',cb:'#fdedf3',
+q:'Irregular respirations in a dying patient are:',
+opts:['A medication side effect requiring dose adjustment','A sign of active dying — normal in the dying process','An emergency requiring immediate intubation','A sign of pneumonia needing antibiotics'],
+ans:1,explain:'Irregular respirations (including Cheyne-Stokes — alternating apnea and rapid breathing) = a SIGN OF ACTIVE DYING. Reflects brain stem dysfunction and reduced oxygenation. Reassure the family. (Test Review #12)'},
+
+{id:12,mod:'dying',obj:'Signs of Active Dying',cat:'Signs of Active Dying',icon:'💀',cc:'#a0284a',cb:'#fdedf3',
+q:'When a dying patient\'s pulse SPEEDS UP, this is:',
+opts:['A sign of improvement — the heart is working harder to recover','A sign of active dying — cardiac decompensation and reduced perfusion','A sign of sepsis requiring blood cultures','A response to fever requiring acetaminophen'],
+ans:1,explain:'Pulse speeds up (and becomes weaker/thready) = a SIGN OF ACTIVE DYING — cardiac decompensation and reduced perfusion. The pulse becomes rapid and thready, difficult to palpate. (Test Review #13)'},
+
+{id:13,mod:'dying',obj:'Signs of Active Dying',cat:'Signs of Active Dying',icon:'💀',cc:'#a0284a',cb:'#fdedf3',
+q:'As death approaches, what changes occur to a patient\'s skin, toes, and fingers? (Select ALL that apply)',
+opts:['Skin becomes purple and/or mottled','Toes and fingers appear purple/bluish','Skin becomes warm and flushed','Extremities become cool and clammy','Nail beds appear purple and pale'],
+ans:[0,1,3,4],multi:true,explain:'As death approaches: skin becomes PURPLE/MOTTLED; toes and fingers appear purple/bluish; extremities become COOL AND CLAMMY; nail beds appear PURPLE AND PALE. This reflects declining circulation. (Test Review #10 / Laptop screen)'},
+
+{id:14,mod:'dying',obj:'Signs of Active Dying',cat:'Signs of Active Dying',icon:'💀',cc:'#a0284a',cb:'#fdedf3',
+q:'Which of the following are signs of ACTIVE DYING? (Select ALL that apply)',
+opts:['Patient reaching out and grabbing at the air','Irregular respirations (Cheyne-Stokes)','Pulse speeding up and becoming thready','Blood pressure progressively falling','Profuse diaphoresis (excessive sweating)'],
+ans:[0,1,2,3,4],multi:true,explain:'ALL five are signs of active dying: reaching/grabbing, Cheyne-Stokes respirations, rapid thready pulse, falling BP, and profuse diaphoresis. These reflect the body\'s systems shutting down. (Test Review #11-13)'},
+
+/* ══ EOL CARE & INTERVENTIONS ════════════════════════ */
+{id:15,mod:'eol',obj:'EOL Care & Interventions',cat:'EOL Care & Interventions',icon:'🩺',cc:'#6b3fa0',cb:'#f0ebfc',
+q:'What is CACHEXIA?',
+opts:['A type of fungal infection common in immunocompromised patients','Extreme weakness and muscle wasting — weak, skinny, frail appearance; often called "bag of bones"','A cardiac arrhythmia caused by electrolyte imbalance','A side effect of anticoagulant therapy'],
+ans:1,explain:'Cachexia = extreme weakness and muscle wasting — the patient appears weak, skinny, and frail ("bag of bones"). Usually associated with cancer and terminal illness. It is a physiological change of end-stage dying. (Test Review #7)'},
+
+{id:16,mod:'eol',obj:'EOL Care & Interventions',cat:'EOL Care & Interventions',icon:'🩺',cc:'#6b3fa0',cb:'#f0ebfc',
+q:'Why do we REPOSITION patients so often in EOL care?',
+opts:['To prevent blood clots in the legs','To prevent pressure ulcers (pressure injuries)','To improve cardiac output','To prevent aspiration pneumonia only'],
+ans:1,explain:'We reposition patients to PREVENT PRESSURE ULCERS (pressure injuries). Dying patients have impaired circulation, fragile skin, and cannot reposition themselves — q2h turning prevents skin breakdown. (Test Review #8)'},
+
+{id:17,mod:'eol',obj:'EOL Care & Interventions',cat:'EOL Care & Interventions',icon:'🩺',cc:'#6b3fa0',cb:'#f0ebfc',
+q:'What is AIR HUNGER and what are the nursing interventions?',
+opts:['Air hunger = a type of pneumonia; treated with antibiotics','Air hunger = shortness of breath/dyspnea. Interventions: semi-Fowler\'s or high Fowler\'s positioning, fan for air circulation, oral care, and anxiety medications','Air hunger = when a patient gasps for air after swimming; no nursing intervention needed','Air hunger = severe anemia; treated with blood transfusion'],
+ans:1,explain:'Air hunger = dyspnea/SOB (sometimes associated with the death rattle). Interventions: POSITIONING (semi-Fowler\'s or high Fowler\'s — at least 30 degrees); FAN for air circulation; oral care; ANXIETY MEDICATIONS (lorazepam/Ativan). (Test Review #9)'},
+
+{id:18,mod:'eol',obj:'EOL Care & Interventions',cat:'EOL Care & Interventions',icon:'🩺',cc:'#6b3fa0',cb:'#f0ebfc',
+q:'What are the BIGGEST side effects of narcotics/opioids? (Select ALL that apply)',
+opts:['Respiratory depression','Constipation','Failure to thrive / lethargic','Hypertension','Visual hallucinations'],
+ans:[0,1,2],multi:true,explain:'Biggest side effects of narcotics: RESPIRATORY DEPRESSION (most dangerous — must check RR ≥12 before giving), CONSTIPATION (most common — start bowel regimen immediately), and FAILURE TO THRIVE/LETHARGIC. (Test Review #6 / Laptop screen)'},
+
+{id:19,mod:'eol',obj:'EOL Care & Interventions',cat:'EOL Care & Interventions',icon:'🩺',cc:'#6b3fa0',cb:'#f0ebfc',
+q:'A mother is apologizing to the father of a 2-year-old who drowned. The nurse identifies this as which level of grief?',
+opts:['Anger','Denial','Guilt','Bargaining'],
+ans:2,explain:'GUILT — the mother is apologizing, indicating she feels responsible or blames herself for the child\'s death. Guilt is a primary grief response in sudden, traumatic, or accidental deaths. (Test Review #17)'},
+
+{id:20,mod:'eol',obj:'EOL Care & Interventions',cat:'EOL Care & Interventions',icon:'🩺',cc:'#6b3fa0',cb:'#f0ebfc',
+q:'When a nurse approaches a GRIEVING FAMILY, what must the nurse assess FIRST?',
+opts:['The family\'s financial resources for funeral planning','The family\'s legal documentation and advance directives','The level of grief resolution — assess where the family is in their grief process','The family\'s religious beliefs before saying anything'],
+ans:2,explain:'Nurse approaches grieving family with RESOLUTION in mind — assess the level of grief resolution first. Identify where they are in the grief process so interventions can be individualized and appropriate. (Test Review #16)'},
+
+{id:21,mod:'eol',obj:'EOL Care & Interventions',cat:'EOL Care & Interventions',icon:'🩺',cc:'#6b3fa0',cb:'#f0ebfc',
+q:'A patient reports pain 8/10. The physician ordered pain medication every 4 hours. It has been 3.5 hours and the pain has returned. What should the nurse do? (BREAKTHROUGH PAIN)',
+opts:['Make the patient wait until the full 4 hours have passed','Call the physician and wait for a new order before giving anything','Give the patient the medication and document it — do not make the patient suffer','Administer half the dose since it has not been the full 4 hours'],
+ans:2,explain:'GIVE the medication and DOCUMENT it. Do not make the patient suffer by waiting for the exact 4-hour mark. Adjust the schedule forward or give as a one-time dose. Pain control is a nursing priority. (Test Review #18)'},
+
+/* ══ CARDIAC ══════════════════════════════════════════ */
+{id:22,mod:'cardiac',obj:'Cardiac',cat:'Cardiac',icon:'❤️',cc:'#d0312d',cb:'#fde8e8',
+q:'What is the DIFFERENCE between MI and angina?',
+opts:['MI is temporary chest pain; angina causes permanent heart damage','Both involve chest pain and decreased oxygen. MI = death/necrosis of heart tissue (heart attack). Angina = temporary pain WITHOUT tissue death','MI only occurs at rest; angina only occurs with exercise','There is no difference — they are the same condition'],
+ans:1,explain:'Both involve chest pain and decreased O2 to the myocardium. MI (heart attack) = DEATH/NECROSIS of heart tissue — caused by coronary artery obstruction. Angina = TEMPORARY pain WITHOUT tissue death — reversible. Ischemia → Injury → Infarction. (Test Review #14)'},
+
+{id:23,mod:'cardiac',obj:'Cardiac',cat:'Cardiac',icon:'❤️',cc:'#d0312d',cb:'#fde8e8',
+q:'What MUSCLE LAYER of the heart is responsible for contraction?',
+opts:['Epicardium (outer layer)','Endocardium (inner lining)','Myocardium (middle muscular layer)','Pericardium (protective sac)'],
+ans:2,explain:'The MYOCARDIUM is the middle muscular layer of the heart responsible for CONTRACTION. When the myocardium is damaged (as in an MI), the pumping function of the heart is compromised. (Test Review #15)'},
+
+{id:24,mod:'cardiac',obj:'Cardiac',cat:'Cardiac',icon:'❤️',cc:'#d0312d',cb:'#fde8e8',
+q:'A patient presents with chest pain and a troponin level of 0.6. What does this indicate?',
+opts:['Normal finding — troponin 0.6 is within normal limits','Angina pectoris — elevated troponin confirms reversible ischemia','Myocardial Infarction (MI) — elevated troponin indicates cardiac muscle damage/death','Pericarditis — troponin elevation is caused by pericardial inflammation only'],
+ans:2,explain:'Troponin 0.6 = ELEVATED (normal < 0.04 ng/mL) → indicates MYOCARDIAL INFARCTION. Troponin is a protein found in heart muscle — when cardiac cells die during an MI, they release troponin into the bloodstream. (Test Review #21)'},
+
+{id:25,mod:'cardiac',obj:'Cardiac',cat:'Cardiac',icon:'❤️',cc:'#d0312d',cb:'#fde8e8',
+q:'What is the PRIMARY function of the cardiovascular system?',
+opts:['Filtering waste products through the kidneys','Regulating body temperature through blood vessel dilation','Delivering oxygen and nutrients to the body and removing carbon dioxide and waste','Producing blood cells in the bone marrow'],
+ans:2,explain:'Primary function of the cardiovascular system: DELIVERS OXYGEN AND NUTRIENTS to all tissues; REMOVES CARBON DIOXIDE AND WASTE. The heart is the pump, blood vessels are the delivery system. (Test Review #20)'},
+
+{id:26,mod:'cardiac',obj:'Cardiac',cat:'Cardiac',icon:'❤️',cc:'#d0312d',cb:'#fde8e8',
+q:'What is FLUOROSCOPY?',
+opts:['A non-invasive ultrasound of the heart chambers','A moving/real-time X-ray (imaging technique) — moving radiology','A blood test to check troponin levels','A stress test using electrical leads on the chest'],
+ans:1,explain:'Fluoroscopy = a MOVING RADIOLOGY imaging technique — it provides real-time, continuous X-ray imaging. Used to guide procedures like cardiac catheterization. (Test Review #19)'},
+
+{id:27,mod:'cardiac',obj:'Cardiac',cat:'Cardiac',icon:'❤️',cc:'#d0312d',cb:'#fde8e8',
+q:'When performing CPR chest compressions, the nurse must ALWAYS avoid the:',
+opts:['Upper manubrium of the sternum','Left side of the chest over the heart','Xiphoid process (tip of the sternum)','Clavicle'],
+ans:2,explain:'Always avoid the XIPHOID PROCESS — the bottom tip of the sternum. Pressing on it can cause liver laceration and internal injury. Place hands on the LOWER THIRD of the sternum; compress at least 2 inches at 100-120/min. (Test Review #22)'},
+
+{id:28,mod:'cardiac',obj:'Cardiac',cat:'Cardiac',icon:'❤️',cc:'#d0312d',cb:'#fde8e8',
+q:'When placing a HEART MONITOR (continuous cardiac monitoring), what must the nurse ensure?',
+opts:['The patient is NPO for 4 hours before placement','The monitor is set to the highest alarm volume','Correct lead placement and that the monitor reading matches the patient\'s actual status','The patient is sedated before applying leads'],
+ans:2,explain:'When placing a heart monitor: ensure CORRECT LEAD PLACEMENT and that the reading MATCHES THE PATIENT\'S STATUS. An incorrect lead placement or disconnected lead appears as a flat line or abnormal rhythm — always check the patient FIRST before calling a code. (Test Review #23)'},
+
+{id:29,mod:'cardiac',obj:'Cardiac',cat:'Cardiac',icon:'❤️',cc:'#d0312d',cb:'#fde8e8',
+q:'After a MYOCARDIAL INFARCTION (MI/heart attack), which complications are possible? (Select ALL that apply)',
+opts:['Heart failure','Thrombo-embolism (blood clots)','Aneurysm (weakened heart wall bulging)','Dysrhythmia (abnormal heart rhythm)','Sudden cardiac death'],
+ans:[0,1,2,3,4],multi:true,explain:'ALL five are possible complications after MI: heart failure (damaged heart pumps less effectively), thrombo-embolism (clots), aneurysm (weakened wall), dysrhythmia (disrupted electrical conduction), and sudden cardiac death. (Test Review #24 — SATA)'},
+
+{id:30,mod:'cardiac',obj:'Cardiac',cat:'Cardiac',icon:'❤️',cc:'#d0312d',cb:'#fde8e8',
+q:'Is a STRESS ECHOCARDIOGRAM invasive or non-invasive?',
+opts:['Invasive — requires a catheter inserted into the heart','Invasive — requires contrast dye injection','Non-invasive — uses ultrasound to image the heart during controlled stress','Semi-invasive — requires a needle puncture only'],
+ans:2,explain:'Stress echocardiogram (stress echo) = NON-INVASIVE. It uses ULTRASOUND to image how the heart functions during controlled physical or pharmacological stress — no catheters or needles required. (Test Review #25)'},
+
+{id:31,mod:'cardiac',obj:'Cardiac',cat:'Cardiac',icon:'❤️',cc:'#d0312d',cb:'#fde8e8',
+q:'After PACEMAKER IMPLANTATION, which instruction is MOST important for the patient?',
+opts:['Avoid all physical activity for 6 months','Use the arm on the pacemaker side for gentle exercise to prevent stiffness','Limit movement of the shoulder on the SAME SIDE as the implant — no abduction of that arm for approximately 2-4 weeks','Limit movement of the OPPOSITE arm from the implant'],
+ans:2,explain:'After pacemaker: LIMIT MOVEMENT on the SAME SIDE as the implant — NO ABDUCTION of that shoulder/arm. This prevents dislodging the pacemaker leads before they are secured to heart tissue. Keep arm close to body for 2-4 weeks. (Test Review #26)'},
+
+{id:32,mod:'cardiac',obj:'Cardiac',cat:'Cardiac',icon:'❤️',cc:'#d0312d',cb:'#fde8e8',
+q:'An EKG/ECG monitor is NOT reading well. What should the nurse do FIRST?',
+opts:['Call the rapid response team immediately','Administer emergency medications','Check the lead — the lead may be disconnected or have poor contact','Document the finding and notify the physician'],
+ans:2,explain:'EKG not reading well → CHECK THE LEAD first. A sudden flat line or poor reading is MOST COMMONLY caused by a disconnected or poorly placed lead. Always assess the patient AND check the leads before escalating. (Laptop screen / Test review)'},
+
+{id:33,mod:'cardiac',obj:'Cardiac',cat:'Cardiac',icon:'❤️',cc:'#d0312d',cb:'#fde8e8',
+q:'The nurse is teaching a patient about COMPLICATIONS after a MI/heart attack. Which should be included? (Select ALL that apply)',
+opts:['Heart failure','Thrombo-embolism','Dysrhythmia','Sudden cardiac death','Aneurysm'],
+ans:[0,1,2,3,4],multi:true,explain:'All five MI complications to teach: heart failure, thrombo-embolism, dysrhythmia, sudden cardiac death, and aneurysm. This is a classic SATA question — all are valid post-MI complications. (Test Review #24 / Laptop screen)'},
+
+{id:34,mod:'cardiac',obj:'Cardiac',cat:'Cardiac',icon:'❤️',cc:'#d0312d',cb:'#fde8e8',
+q:'What is the BIGGEST side effect of narcotics to monitor for that could be LIFE-THREATENING?',
+opts:['Constipation','Nausea','Respiratory DEPRESSION — must check respiratory rate (≥12) before administering','Drowsiness'],
+ans:2,explain:'RESPIRATORY DEPRESSION is the most dangerous side effect of narcotics. Always check the respiratory rate BEFORE giving opioids — minimum RR of 12 breaths/minute required. Giving opioids with RR <12 could cause respiratory arrest. (Test Review #6 / Teacher notes)'},
+
+];
+
+const OBJS=[
+  {key:'Hospice & Palliative Care',icon:'🏥',label:'Hospice & Palliative Care',desc:'Goal of hospice, palliative care teaching, life expectancy, plan of care, family concerns',cc:'#0a8f80',cb:'#e0f5f2'},
+  {key:'Signs of Active Dying',icon:'💀',label:'Signs of Active Dying',desc:'Nail beds, grabbing/fidgeting, irregular respirations, pulse, skin/mottling, diaphoresis',cc:'#a0284a',cb:'#fdedf3'},
+  {key:'EOL Care & Interventions',icon:'🩺',label:'EOL Care & Interventions',desc:'Cachexia, repositioning, air hunger, narcotic side effects, grief guilt, breakthrough pain',cc:'#6b3fa0',cb:'#f0ebfc'},
+  {key:'Cardiac',icon:'❤️',label:'Cardiac',desc:'MI vs angina, myocardium, troponin, cardiovascular function, fluoroscopy, CPR, heart monitor, MI complications, stress echo, pacemaker',cc:'#d0312d',cb:'#fde8e8'},
+];
+
+function buildAll(){
+  const wrap=document.getElementById('qwrap');wrap.innerHTML='';
+  OBJS.forEach(ob=>{
+    const qs=QS.filter(q=>q.obj===ob.key);if(!qs.length)return;
+    const ban=document.createElement('div');
+    ban.className='obj-banner';ban.dataset.ob=ob.key;
+    ban.style.cssText=`background:${ob.cc};color:#fff;`;
+    ban.innerHTML=`<div class="ob-icon">${ob.icon}</div><div class="ob-text"><strong style="color:#fff">${ob.label}</strong><p>${ob.desc}</p></div><span class="ob-count">${qs.length} Q</span>`;
+    wrap.appendChild(ban);
+    qs.forEach((q,i)=>wrap.appendChild(buildCard(q,i)));
+  });
+  document.getElementById('dt').textContent=QS.length;
+}
+
+function buildCard(q,qi){
+  const c=document.createElement('div');c.className='qc';c.id=`c${q.id}`;c.dataset.mod=q.mod;c.dataset.id=q.id;
+  c.style.animationDelay=Math.min(qi*.04,.2)+'s';
+  const multi=!!q.multi;
+  const opts=q.opts.map((o,i)=>`<button class="opt" onclick="sel(${q.id},${i},${multi})"><span class="ol">${L[i]}</span><span style="flex:1">${o}</span>${multi?'<span class="ochk"></span>':''}</button>`).join('');
+  c.innerHTML=`<div class="qh"><span class="qn">${q.id}</span><span class="qtag" style="background:${q.cb};color:${q.cc}">${q.cat}</span>${multi?`<span class="qmb" style="background:${q.cb};color:${q.cc}">SELECT ALL</span>`:''}<span class="qsi" id="si${q.id}"></span></div>
+  <div class="qbd">${multi?'<div class="mn">⚠ Select ALL correct answers before submitting</div>':''}<div class="qt">${q.q}</div><div class="opts" id="o${q.id}">${opts}</div></div>
+  <div class="rat" id="r${q.id}"><div class="rati"><span class="ri" id="ri${q.id}"></span><div class="rc" id="rc${q.id}"></div></div></div>
+  <div class="qft"><button class="subbtn" id="sb${q.id}" onclick="subQ(${q.id})" disabled>Submit <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button><span class="skn" id="hn${q.id}">${multi?'Select all correct answers':'Select an answer to submit'}</span></div>`;
+  return c;
+}
+
+function sel(qid,idx,multi){
+  const s=state[qid]||{};if(s.submitted)return;
+  if(multi){s.chosen=s.chosen||[];const p=s.chosen.indexOf(idx);if(p>=0)s.chosen.splice(p,1);else s.chosen.push(idx);document.querySelectorAll(`#o${qid} .opt`).forEach((b,i)=>{b.classList.toggle('sel',s.chosen.includes(i));const ch=b.querySelector('.ochk');if(ch)ch.textContent=s.chosen.includes(i)?'✓':'';});document.getElementById(`hn${qid}`).textContent=s.chosen.length?`${s.chosen.length} selected`:'Select all correct answers';}
+  else{s.chosen=idx;document.querySelectorAll(`#o${qid} .opt`).forEach((b,i)=>b.classList.toggle('sel',i===idx));document.getElementById(`hn${qid}`).textContent='';}
+  state[qid]=s;document.getElementById(`sb${qid}`).disabled=multi?s.chosen.length===0:false;
+}
+
+function subQ(qid){
+  const q=QS.find(x=>x.id===qid);const s=state[qid];
+  if(!s||s.submitted||s.chosen==null||(Array.isArray(s.chosen)&&!s.chosen.length))return;
+  s.submitted=true;
+  const multi=!!q.multi;const corr=Array.isArray(q.ans)?q.ans:[q.ans];const chosen=Array.isArray(s.chosen)?s.chosen:[s.chosen];
+  const isOk=multi?(JSON.stringify(chosen.slice().sort((a,b)=>a-b))===JSON.stringify(corr.slice().sort((a,b)=>a-b))):chosen[0]===q.ans;
+  s.correct=isOk;
+  document.querySelectorAll(`#o${qid} .opt`).forEach((b,i)=>{b.disabled=true;b.classList.remove('sel');const ia=corr.includes(i);const ip=chosen.includes(i);if(ia&&ip)b.classList.add('oc');else if(!ia&&ip)b.classList.add('ow');else if(ia&&!ip)b.classList.add('or');const ch=b.querySelector('.ochk');if(ch)ch.textContent=ia?'✓':(ip?'✗':'');});
+  document.getElementById(`c${qid}`).classList.add(isOk?'cc':'wc');
+  document.getElementById(`si${qid}`).textContent=isOk?'✅':'❌';
+  const rat=document.getElementById(`r${qid}`);rat.classList.add(isOk?'rat-c':'rat-w','show');
+  document.getElementById(`ri${qid}`).textContent=isOk?'💡':'📖';
+  document.getElementById(`rc${qid}`).innerHTML=`<strong>${isOk?'Correct!':'Incorrect — Here\'s Why:'}</strong>${q.explain}`;
+  const sb=document.getElementById(`sb${qid}`);sb.disabled=true;sb.innerHTML=isOk?'✔ Correct':'✘ Incorrect';sb.style.background=isOk?'var(--green)':'var(--red)';sb.style.boxShadow='none';
+  document.getElementById(`hn${qid}`).textContent='';
+  updateDash();applyFilter();
+}
+
+function submitAll(){QS.forEach(q=>{const s=state[q.id];if(s&&!s.submitted&&s.chosen!=null)subQ(q.id);});}
+function resetAll(){if(!confirm('Reset all answers?'))return;QS.forEach(q=>{delete state[q.id];});buildAll();updateDash();document.getElementById('results-div').style.display='none';window.scrollTo({top:0,behavior:'smooth'});}
+
+function updateDash(){
+  const ans=QS.filter(q=>state[q.id]?.submitted).length;const cor=QS.filter(q=>state[q.id]?.correct).length;const pct=Math.round(ans/QS.length*100);
+  document.getElementById('dc').textContent=cor;document.getElementById('dw').textContent=ans-cor;document.getElementById('da').textContent=ans;
+  document.getElementById('hpf').style.width=pct+'%';document.getElementById('hppl').textContent=pct+'%';
+  if(ans===QS.length)showResults(cor,ans-cor);
+}
+
+function showResults(cor,wr){
+  const pct=Math.round(cor/QS.length*100);
+  const[e,t]=pct>=90?['🏆','You\'re Ready! Go Ace That Test!']:pct>=75?['🎉','Great Work! Almost There!']:pct>=60?['📚','Keep Reviewing!']:['💪','Don\'t Give Up! Study More!'];
+  const b=document.getElementById('results-div');
+  b.innerHTML=`<div class="rbe">${e}</div><div class="rbt">${t}</div><div class="rbs">Test Review — ${QS.length} questions completed</div><div class="rbp">${pct}%</div><div class="rbst"><div class="rbc"><strong>${cor}</strong><span>Correct</span></div><div class="rbw"><strong>${wr}</strong><span>Incorrect</span></div></div>`;
+  b.style.display='block';b.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function applyFilter(){
+  const f=cf;
+  document.querySelectorAll('.qc').forEach(c=>{const qid=+c.dataset.id;const mod=c.dataset.mod;const s=state[qid]||{};let show=true;if(f==='hospice')show=mod==='hospice';else if(f==='dying')show=mod==='dying';else if(f==='eol')show=mod==='eol';else if(f==='cardiac')show=mod==='cardiac';else if(f==='unanswered')show=!s.submitted;else if(f==='wrong')show=s.submitted&&!s.correct;c.style.display=show?'':'none';});
+  document.querySelectorAll('.obj-banner').forEach(b=>{const ob=b.dataset.ob;const any=[...document.querySelectorAll('.qc')].some(c=>{const q=QS.find(x=>x.id===+c.dataset.id);return q&&q.obj===ob&&c.style.display!=='none';});b.style.display=any?'':'none';});
+}
+
+document.querySelectorAll('.fc').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.fc').forEach(b=>b.classList.remove('on'));btn.classList.add('on');cf=btn.dataset.f;applyFilter();});});
+buildAll();
+</script>
+
+<script>
+var PASSCODE='2027';
+var entered='';
+function pressNum(n){if(entered.length>=4)return;entered+=n;updateLockDots();if(entered.length===4){setTimeout(checkLockCode,150);}}
+function pressDelete(){entered=entered.slice(0,-1);updateLockDots();document.getElementById('lock-err').classList.remove('show');}
+function updateLockDots(){for(var i=0;i<4;i++){var dot=document.getElementById('d'+i);dot.classList.remove('filled','error');if(i<entered.length)dot.classList.add('filled');}}
+function checkLockCode(){if(entered===PASSCODE){document.getElementById('lock-screen').classList.add('hidden');}else{for(var i=0;i<4;i++){var dot=document.getElementById('d'+i);dot.classList.remove('filled');dot.classList.add('error');}document.getElementById('lock-err').classList.add('show');setTimeout(function(){entered='';updateLockDots();for(var i=0;i<4;i++)document.getElementById('d'+i).classList.remove('error');},800);}}
+document.addEventListener('keydown',function(e){if(document.getElementById('lock-screen').classList.contains('hidden'))return;if(e.key>='0'&&e.key<='9')pressNum(e.key);if(e.key==='Backspace')pressDelete();});
+</script>
+</body>
+</html>
